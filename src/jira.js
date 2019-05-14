@@ -1743,4 +1743,23 @@ export default class JiraApi {
       pathname: '/serverInfo',
     })));
   }
+
+  /**
+   * Get list of worklogs updated starting from date
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-worklog-updated-get)
+   * 
+   * @name getWorklogUpdated
+   * @function
+   * @param {number} [since=0] - The date and time, in UNIX timestamp format, after which updated worklogs are returned. Default: 0
+   * @param {string} [expand] - Use expand to include additional information about worklogs in the response. This parameter accepts properties that returns the properties of each worklog.
+   */
+  getWorklogUpdated(since, expand) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: '/workklog/updated',
+      query: {
+        since,
+        expand,
+      },
+    })));
+  }
 }
