@@ -1755,11 +1755,30 @@ export default class JiraApi {
    */
   getWorklogUpdated(since, expand) {
     return this.doRequest(this.makeRequestHeader(this.makeUri({
-      pathname: '/workklog/updated',
+      pathname: '/worklog/updated',
       query: {
         since,
         expand,
       },
     })));
+  }
+
+  /** 
+   * Get details of worklogs by ID
+   * 
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-worklog-list-post)
+   * @name getWorklogs
+   * @function
+   * @param {array} ids - id of worklogs to get
+   */
+  getWorklogs(ids) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: '/worklog/list',
+    }), {
+      method: 'POST',
+      body: {
+        ids,
+      },
+    }));
   }
 }
